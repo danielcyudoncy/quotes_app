@@ -17,7 +17,6 @@ class SplashScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(AppImages.splashImage),
-            // const FlutterLogo(size: 100),
             const SizedBox(
               height: 20,
             ),

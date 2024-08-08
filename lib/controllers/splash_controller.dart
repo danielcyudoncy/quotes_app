@@ -9,6 +9,6 @@ class SplashController extends GetxController {
 
   void navigateToOnboarding() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.offAllNamed('/onboarding_screen');
+    Get.offAllNamed('/onboarding');
   }
 }
