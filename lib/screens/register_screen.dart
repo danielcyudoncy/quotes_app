@@ -1,10 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quotes_app/controllers/auth_controller.dart';
+
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+  RegisterScreen({super.key});
+  final AuthController controller = Get.put(AuthController());
+
+   
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Column(
+        children: [
+          const TextField(
+            decoration: InputDecoration(labelText: "Username"),
+          ),
+          const TextField(
+            decoration: InputDecoration(labelText: "Password"),
+            obscureText: true,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              controller.register('username', 'password');
+            },
+            child: const Text("Register"),
+          ),
+        ],
+      ),
+    );
   }
 }
