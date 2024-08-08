@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app/routes/routes.dart';
 import 'package:quotes_app/screens/home_screen.dart';
+import 'package:quotes_app/screens/login_screen.dart';
 import 'package:quotes_app/screens/onboarding_screen.dart';
 import 'package:quotes_app/screens/profile_screen.dart';
 import 'package:quotes_app/screens/register_screen.dart';
-import 'package:quotes_app/screens/login_screen.dart';
 import 'package:quotes_app/screens/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: Routes.splashScreenRoute, page: () => const SplashScreen()),
         GetPage(name: Routes.onboardingScreenRoute, page: () => OnboardingScreen()),
-        GetPage(name: Routes.logInScreenRoute, page: () => const LogInScreen()),
+        GetPage(name: Routes.logInScreenRoute, page: () =>  LoginScreen()),
         GetPage(name: Routes.registerScreenRoute, page: () => const RegisterScreen()),
         GetPage(name: Routes.profileScreenRoute, page: () => const ProfileScreen()),
         GetPage(name: Routes.homeScreenRoute, page: () => const HomeScreen()),
