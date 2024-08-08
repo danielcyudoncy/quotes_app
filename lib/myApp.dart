@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: Routes.logInScreenRoute, page: () =>  LoginScreen()),
         GetPage(name: Routes.registerScreenRoute, page: () =>  RegisterScreen()),
         GetPage(name: Routes.profileScreenRoute, page: () => const ProfileScreen()),
-        GetPage(name: Routes.homeScreenRoute, page: () => const HomeScreen()),
+        GetPage(name: Routes.homeScreenRoute, page: () =>  HomeScreen()),
       ],
       home: const SplashScreen(),
     );
