@@ -4,7 +4,7 @@ import 'package:quotes_app/models/quote_model.dart';
 
 class QuotesController extends GetxController {
   var quotes = <Quote>[].obs;
-  Dio _dio = Dio();
+  final Dio _dio = Dio();
 
   @override
   void onInit() {
