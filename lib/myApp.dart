@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
             name: Routes.splashScreenRoute, page: () => const SplashScreen()),
-        GetPage(name: Routes.onboardingScreenRoute, page: () => const OnboardingScreen()),
+        GetPage(name: Routes.onboardingScreenRoute, page: () => OnboardingScreen()),
         GetPage(name: Routes.logInScreenRoute, page: () => const LogInScreen()),
         GetPage(name: Routes.registerScreenRoute, page: () => const RegisterScreen()),
         GetPage(name: Routes.profileScreenRoute, page: () => const ProfileScreen()),
