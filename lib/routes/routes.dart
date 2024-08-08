@@ -17,3 +17,4 @@ class AppRoutes {
     GetPage(name: '/profile', page: () => ProfileScreen()),
   ];
 }
+
