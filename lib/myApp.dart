@@ -1,17 +1,19 @@
-
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quotes_app/screens/splash_screen.dart';
+import 'package:quotes_app/routes/routes.dart';
+
+import 'app_bindings/app_bindings.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Daily Quotes',
-         home: SplashScreen(),
+      initialBinding: AppBindings(), 
+      initialRoute: '/splash', 
+      getPages: AppRoutes.routes,
     );
   }
 }
