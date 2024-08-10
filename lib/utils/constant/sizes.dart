@@ -12,7 +12,7 @@ class AppSizes {
   static const double fontSizeSm = 12.0;
   static const double fontSizeMs = 14.0;
   static const double fontSizeMd = 16.0;
-  static const double fontSizeLg = 18.0;
+  static const double fontSizeLg = 24.0;
 
   //Default spacing between sections
   static const double defaultSpace = 24.0;

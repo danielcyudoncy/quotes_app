@@ -6,8 +6,8 @@ class Quote {
 
   factory Quote.fromJson(Map<String, dynamic> json) {
     return Quote(
-      text: json['text'],
-      author: json['author'],
+      text: json['text'] ?? 'No text available', 
+      author: json['author'] ?? 'Unknown author', 
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app/controllers/profile_controller.dart';
 import 'package:quotes_app/controllers/quote_controller.dart';
+
 import 'package:quotes_app/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
