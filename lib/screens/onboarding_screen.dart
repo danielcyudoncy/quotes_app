@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app/controllers/onboarding_controller.dart';
-import 'package:quotes_app/screens/login_screen.dart';
 import 'package:quotes_app/utils/constant/images.dart';
-
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({super.key});
-  final OnboardingController controller = Get.put(OnboardingController());
 
-   
+  final OnboardingController controller = Get.put(OnboardingController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +34,24 @@ class OnboardingScreen extends StatelessWidget {
                 ],
               ),
             ),
-              const SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             const Text(
-              'We gives you all the quotes \n in one place',
+              'We give you all the quotes \n in one place',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 18,
               ),
             ),
-            const SizedBox(height: 90,),
+            const SizedBox(height: 90),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                onPressed: (){
-                  Get.to(() =>  LoginScreen()); }, 
+                  onPressed: () {
+                    
+                    controller.navigateToLogin(); 
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(350, 50),
                     backgroundColor: const Color.fromARGB(255, 31, 44, 226),
@@ -61,12 +60,11 @@ class OnboardingScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(24),
                     ),
                   ),
-                child: const Text("Get Started"),
-              ),
-            ])],
-            
-              
-          
+                  child: const Text("Get Started"),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
