@@ -10,4 +10,6 @@ class Quote {
       author: json['author'],
     );
   }
+
+  get quote => null;
 }
