@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                   itemCount: quotesController.quotes.length + (quotesController.isLoading.value ? 1 : 0),
                   itemBuilder: (context, index) {
                     if (index < quotesController.quotes.length) {
-                      final quote = quotesController.quotes[index];
+                      var quote = quotesController.quotes[index];
                       return Card(
                         elevation: 4.0,
                         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
