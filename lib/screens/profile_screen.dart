@@ -8,11 +8,19 @@ import 'package:quotes_app/controllers/auth_controller.dart';
 import 'package:quotes_app/utils/constant/colors.dart';
 import 'package:quotes_app/utils/constant/sizes.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final ProfileController profileController = Get.find<ProfileController>(); 
-  final AuthController authController = Get.find<AuthController>();
+
+  final AuthController _authController = Get.find<AuthController>();
+    final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -20,6 +28,15 @@ class ProfileScreen extends StatelessWidget {
     if (image != null) {
       profileController.pickImage(image.path);
     }
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    final user = _authController.auth.currentUser;
+    _nameController.text = user?.displayName ?? '';
+    _phoneController.text = user?.phoneNumber ?? '';
   }
 
   @override
@@ -31,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              authController.logout();  
+              _authController.logout();  
               Get.offAllNamed('/onboarding');  
             },
           ),
@@ -111,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  authController.logout();  
+                  _authController.logout();  
                   Get.offAllNamed('/onboarding');  
                 },
                 style: ElevatedButton.styleFrom(
