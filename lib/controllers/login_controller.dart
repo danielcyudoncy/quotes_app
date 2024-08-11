@@ -10,6 +10,8 @@ class LogInController extends GetxController {
   var toggled = true.obs;
   var agreePersonalData = false.obs;
 
+  
+
   void submit() {
     if (formKey.currentState!.validate()) {
       Get.to(() => HomeScreen());
