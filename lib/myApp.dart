@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: AppBindings(), 
+      title: 'Quotes',
       initialRoute: '/splash', 
       getPages: AppRoutes.routes,
     );
