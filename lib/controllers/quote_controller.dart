@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import '../models/quote_model.dart';
 
-class HomeController extends GetxController {
+class QuotesController extends GetxController {
   var quotes = <Quote>[].obs;
   var isLoading = true.obs;
   var searchQuery = ''.obs;
