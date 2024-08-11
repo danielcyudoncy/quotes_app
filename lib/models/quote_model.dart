@@ -1,13 +1,20 @@
+// quote_model.dart
 class Quote {
-  final String text;
+  final int id;
+  final String quote;
   final String author;
 
-  Quote({required this.text, required this.author});
+  Quote({
+    required this.id,
+    required this.quote,
+    required this.author,
+  });
 
   factory Quote.fromJson(Map<String, dynamic> json) {
     return Quote(
-      text: json['text'] ?? 'No text available', 
-      author: json['author'] ?? 'Unknown author', 
+      id: json['id'],
+      quote: json['quote'],
+      author: json['author'],
     );
   }
 }
