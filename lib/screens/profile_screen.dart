@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart'; 
+import 'package:image_picker/image_picker.dart';
 import 'package:quotes_app/controllers/profile_controller.dart';
 import 'package:quotes_app/controllers/auth_controller.dart';
 import 'package:quotes_app/utils/constant/colors.dart';
@@ -16,40 +15,51 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final ProfileController profileController = Get.find<ProfileController>(); 
-
+  final ProfileController profileController = Get.find<ProfileController>();
   final AuthController _authController = Get.find<AuthController>();
-    final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      profileController.pickImage(image.path);
+    try {
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        profileController.pickImage(image.path);
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to pick image: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
   }
-
 
   @override
   void initState() {
     super.initState();
     final user = _authController.auth.currentUser;
-    _nameController.text = user?.displayName ?? '';
-    _phoneController.text = user?.phoneNumber ?? '';
+    if (user != null) {
+      _nameController.text = user.displayName ?? '';
+      _phoneController.text = user.phoneNumber ?? '';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,  
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              _authController.logout();  
-              Get.offAllNamed('/onboarding');  
+              _authController.logout();
+              Get.offAllNamed('/onboarding');
             },
           ),
         ],
@@ -63,7 +73,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const Center(
                 child: Text(
                   'Profile',
-                  style: TextStyle(fontSize: AppSizes.fontSizeLg, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: AppSizes.fontSizeLg,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 30),
@@ -75,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       radius: 70,
                       backgroundImage: profileController.profileImage.value.isNotEmpty
                           ? FileImage(File(profileController.profileImage.value))
-                          : const AssetImage('assets/default_profile.png') as ImageProvider, 
+                          : const AssetImage('assets/default_profile.png') as ImageProvider,
                       child: profileController.profileImage.value.isEmpty
                           ? const Icon(Icons.camera_alt, size: 50, color: primaryColor)
                           : null,
@@ -86,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 30),
               Obx(
                 () => TextFormField(
-                  initialValue: profileController.fullName.value,
+                  controller: _nameController,
                   decoration: const InputDecoration(
                     labelText: 'Full Name',
                     border: OutlineInputBorder(),
@@ -96,24 +109,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
-              Obx(
-                () => TextFormField(
-                  initialValue: profileController.email.value,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (value) {
-                    profileController.email.value = value;
-                  },
-                ),
-              ),
+              
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
                   profileController.updateProfile();
-                  Get.back(); 
+                  Get.back();
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(350, 50),
@@ -128,8 +129,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  _authController.logout();  
-                  Get.offAllNamed('/onboarding');  
+                  _authController.logout();
+                  Get.offAllNamed('/onboarding');
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(350, 50),

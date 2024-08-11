@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -13,5 +13,17 @@ class AuthController extends GetxController {
     _imageFile.value = image;
   }
   
-  void logout() {}
+  void logout() async {
+    try {
+      await auth.signOut();
+      
+      Get.offAllNamed('/onboarding');
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to log out. Please try again.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
 }

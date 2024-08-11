@@ -13,6 +13,6 @@ class AppRoutes {
     GetPage(name: '/login', page: () => const LoginScreen()),
     GetPage(name: '/register', page: () => RegisterScreen()),
     GetPage(name: '/home', page: () => HomeScreen()), 
-    GetPage(name: '/profile', page: () => ProfileScreen()),
+    GetPage(name: '/profile', page: () => const ProfileScreen()),
   ];
 }

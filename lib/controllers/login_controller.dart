@@ -14,7 +14,20 @@ class LogInController extends GetxController {
 
   void submit() {
     if (formKey.currentState!.validate()) {
-      Get.to(() => HomeScreen());
+      bool loginSuccess = true;
+      if (loginSuccess) {Get.to(() => HomeScreen());
+      }  
+    }else {
+      Get.snackbar('Login Failed',
+      'Invalid email or password',
+      snackPosition: SnackPosition.BOTTOM);
     }
   }
+@override
+void onClose() {
+  emailController.dispose();
+  passwordController.dispose();
+  super.onClose();
+}
+
 }

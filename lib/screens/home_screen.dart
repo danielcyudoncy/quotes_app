@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app/controllers/profile_controller.dart';
 import 'package:quotes_app/controllers/quote_controller.dart';
-
 import 'package:quotes_app/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,8 +13,8 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({super.key}) {
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        quotesController.fetchQuotes();
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent && !quotesController.isLoading.value) {
+        quotesController.fetchQuotes(); // Trigger fetchQuotes only if not already loading
       }
     });
   }
@@ -47,8 +46,8 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Obx(() {
-        if (quotesController.quotes.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
+        if (quotesController.quotes.isEmpty && !quotesController.isLoading.value) {
+          return const Center(child: Text('No quotes available.'));
         } else {
           return Column(
             children: [
@@ -90,10 +89,9 @@ class HomeScreen extends StatelessWidget {
         }
       }),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: 0, // Optionally manage index state if needed
         onTap: (index) {
-          if (index == 0) {
-          } else if (index == 1) {
+          if (index == 1) {
             Get.to(() => ProfileScreen());
           }
         },

@@ -29,10 +29,22 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  void register() {
+  Future<void> register() async {
     if (formKey.currentState!.validate() && agreePersonalData.value) {
-      fullName.value = fullNameController.text; 
-      Get.to(() => HomeScreen()); 
+      try {
+        // Simulate a registration process
+        await Future.delayed(const Duration(seconds: 2)); // Replace with actual registration logic
+        fullName.value = fullNameController.text; 
+        Get.to(() => HomeScreen()); 
+      } catch (error) {
+        Get.snackbar(
+          'Error',
+          'Registration failed: $error',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
     } else if (!agreePersonalData.value) {
       Get.snackbar(
         'Error',
@@ -55,7 +67,10 @@ class RegisterController extends GetxController {
   }
 
   bool isEmail(String value) {
-    final emailRegex = RegExp(r'^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+');
+    final emailRegex = RegExp(
+      r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$',
+      caseSensitive: false,
+    );
     return emailRegex.hasMatch(value);
   }
 }
