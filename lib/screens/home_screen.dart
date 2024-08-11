@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quotes_app/controllers/quote_controller.dart';
 import 'package:quotes_app/controllers/profile_controller.dart';
+import 'package:quotes_app/controllers/quote_controller.dart';
+
 import 'package:quotes_app/screens/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                         elevation: 4.0,
                         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                         child: ListTile(
-                          title: Text(quote.text),
+                          title: Text(quote.quote),
                           subtitle: Text(quote.author),
                         ),
                       );
