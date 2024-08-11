@@ -18,5 +18,5 @@ class Quote {
     );
   }
 
-  get quote => null;
+  
 }
