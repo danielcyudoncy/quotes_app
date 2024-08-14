@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
         currentIndex: 0, // Optionally manage index state if needed
         onTap: (index) {
           if (index == 1) {
-            Get.to(() => ProfileScreen());
+            Get.to(() => const ProfileScreen());
           }
         },
         items: const [

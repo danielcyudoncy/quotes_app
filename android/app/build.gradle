@@ -1,6 +1,6 @@
 plugins {
     id "com.android.application"
-    id "kotlin-android" // Correct Kotlin plugin ID
+    id 'org.jetbrains.kotlin.android'
     id "dev.flutter.flutter-gradle-plugin"
     id 'com.google.gms.google-services'
 }
@@ -35,7 +35,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.quotes_app"
-        minSdk = 23  // Explicitly set to 23
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
@@ -53,10 +53,8 @@ flutter {
 }
 
 dependencies {
-    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    implementation platform('com.google.firebase:firebase-bom')
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
     // Add other Firebase dependencies you need
 }
-
-apply plugin: 'com.google.gms.google-services'
